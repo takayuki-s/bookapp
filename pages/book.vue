@@ -15,12 +15,12 @@ export default {
       books: [],
     }
   },
-  mounted() {
+  created() {
     if (localStorage.getItem(STORAGE_KEY)) {
       try {
         this.books = JSON.parse(localStorage.getItem(STORAGE_KEY))
       } catch(e) {
-        localStorage.removeItem(STORAGE_KEY)
+        // localStorage.removeItem(STORAGE_KEY)
       }
     }
   },
