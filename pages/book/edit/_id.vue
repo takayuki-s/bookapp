@@ -19,7 +19,7 @@
               offset-y
               min-width="auto"
             >
-              <template v-slot:activator="{ on, attrs }">
+              <template #activator="{ on, attrs }">
                 <v-text-field
                   v-model="date"
                   prepend-icon="mdi-calendar"
@@ -30,15 +30,15 @@
               </template>
               <v-date-picker
                 v-model="date"
-                @input="menu = false"
                 locale="jp-ja"
                 :day-format="date => new Date(date).getDate()"
+                @input="menu = false"
               ></v-date-picker>
             </v-menu>
             メモ: <v-textarea v-model="book.memo" class="mx-2">{{ book.memo }}</v-textarea>
             <v-card-actions>
               <v-btn color="secondary" to="/book">一覧に戻る</v-btn>
-              <v-btn color="info">保存する</v-btn>
+              <v-btn color="info" @click="updateBookInfo">保存する</v-btn>
             </v-card-actions>
           </v-col>
         </v-row>
@@ -67,5 +67,14 @@ export default {
       menu: false,
     }
   },
+  methods: {
+    updateBookInfo() {
+      this.$emit('update-book-info', {
+        id: this.$route.params.id,
+        readDate: this.date,
+        memo: this.book.memo
+      })
+    }
+  }
 }
 </script>
