@@ -1,6 +1,6 @@
 <template>
   <div>
-    ユーザー登録<br />
+    ログイン<br />
     <v-row>
       <v-col cols="6">
         <v-text-field
@@ -17,21 +17,21 @@
       <v-col cols="3">
         <v-btn
           color="primary"
-          @click="signUp"
-        >ユーザー登録</v-btn>
+          @click="login"
+        >ログイン</v-btn>
       </v-col>
       <v-col cols="3">
         <v-btn
-          color="secondary"
-          to="./login"
-        >ログインページ</v-btn>
+          text
+          to="./register"
+        >ユーザー登録</v-btn>
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 export default {
   data() {
     return {
@@ -40,12 +40,12 @@ export default {
     }
   },
   methods: {
-    signUp() {
+    login() {
       const auth = getAuth(this.$firebase)
-      createUserWithEmailAndPassword(auth, this.email, this.password)
+      signInWithEmailAndPassword(auth, this.email, this.password)
       .then( userCredential => {
         console.log(userCredential)
-        console.log('ユーザー登録OK!')
+        console.log('ログインOK!')
       })
       .catch(e => {
         alert(e.message)
