@@ -34,6 +34,12 @@
 
 <script>
 export default {
+  props: {
+    books: {
+      type: Array,
+      default: null
+    }
+  },
   data() {
     return {
       drawer: false,
