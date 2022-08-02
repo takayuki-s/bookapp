@@ -46,6 +46,10 @@ export default {
           title: 'Inspire',
           to: '/inspire',
         },
+        {
+          title: 'Logout',
+          to: '/auth/logout'
+        }
       ],
       title: 'bookApp',
     }
