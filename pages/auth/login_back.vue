@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 export default {
   data() {
     return {
@@ -40,9 +41,15 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch('auth/login', {
-        email: this.email,
-        password: this.password
+      const auth = getAuth(this.$firebase)
+      signInWithEmailAndPassword(auth, this.email, this.password)
+      .then( userCredential => {
+        console.log(userCredential)
+        console.log('ログインOK!')
+      })
+      .catch(e => {
+        alert(e.message)
+        console.error('error ', e)
       })
     }
   }
