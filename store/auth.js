@@ -47,6 +47,11 @@ export const actions = {
         console.error('error ', e)
       })
   },
+  addUserInfo({ commit }, payload) {
+    commit('setLoginState', true)
+    commit('setUserUid', payload.uid)
+    commit('setEmail', payload.email)
+  },
 }
 
 export const getters = {
